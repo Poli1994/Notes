@@ -13,6 +13,9 @@
             <Setter Property="Width" Value="120"/>
             <Setter Property="IsEnabled" Value="False"/>
         </Style>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="0"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -28,16 +31,16 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="10">
-            <TextBlock Text="Notiztitel:"/>
+            <Label Content="Notiztitel:"/>
             <TextBox x:Name="newNoticeTitel"/>
             <Button IsEnabled="True" x:Name="addButton" Click="addButton_Click" Content="Hinzufügen"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" Text="Notiztext:" Margin="10, 5, 0, 0"/>
+        <Label Grid.Row="1" Content="Notiztext:" Margin="10, 5, 0, 0"/>
         <TextBox Grid.Row="1" x:Name="newNoticeText" TextWrapping="Wrap" Margin="10, 20, 10, 10"/>
 
-        
-        <TextBlock VerticalAlignment="Top" Margin="10, 10, 0, 0" Grid.Column="1" Text="Notizen:"/>
+
+        <Label VerticalAlignment="Top" Margin="10, 10, 10, 0" Grid.Column="1" Content="Notizen:"/>
         <ListBox Margin="10, 30, 10, 10" Grid.Column="1" Grid.RowSpan="2" SelectionChanged="Notices_SelectionChanged" x:Name="Notices" Visibility="Hidden">
             <ListBox.ItemTemplate>
                 <DataTemplate>
