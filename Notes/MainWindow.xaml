@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Notes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="Notizen" Height="450" Width="600">
 
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="IsEnabled" Value="False"/>
         </Style>
     </Window.Resources>
 
@@ -19,17 +20,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
         <StackPanel Margin="10">
-            <TextBlock Text="Notiz:"/>
-            <TextBox x:Name="newNotice"/>
-            <Button x:Name="addButton" Click="addButton_Click" Content="Hinzufügen"/>
+            <TextBlock Text="Notiztitel:"/>
+            <TextBox x:Name="newNoticeTitel"/>
+            <Button IsEnabled="True" x:Name="addButton" Click="addButton_Click" Content="Hinzufügen"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="10" >
-            <ListBox x:Name="Notices" Visibility="Hidden">
+        <TextBlock Grid.Row="1" Text="Notiztext:" Margin="10, 5, 0, 0"/>
+        <TextBox Grid.Row="1" x:Name="newNoticeText" TextWrapping="Wrap" Margin="10, 20, 10, 10"/>
+
+        <StackPanel Grid.Row="1" Margin="10" Grid.Column="1" >
+            <TextBlock Text="Notizen:"/>
+            <ListBox SelectionChanged="Notices_SelectionChanged" x:Name="Notices" Visibility="Hidden">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Text}"/>
@@ -39,12 +48,13 @@
         </StackPanel>
 
         <DockPanel Grid.Row="2">
-            <Button Click="deleteButton_Click" x:Name="deleteButton" Background="DarkRed" Content="Löschen"/>
-            <Button Click="changeButton_Click" x:Name="changeButton" HorizontalAlignment="Right" Content="Bearbeiten"/>
+            <Button Foreground="White" Click="deleteButton_Click" x:Name="deleteButton" Background="DarkRed" Content="Löschen"/>
+            <Button IsEnabled="True" HorizontalAlignment="Right"  Click="Save_Click" x:Name="Save" Content="Speichern"/>
         </DockPanel>
 
-        <DockPanel Grid.Row="3" Margin="10">
-            <Button Click="Save_Click" x:Name="Save" Content="Speichern" Margin="0"/>
+        <DockPanel Grid.Row="2" Grid.Column="1">
+            <Button Click="openButton_Click" x:Name="openButton" Content="Öffnen"/>
+            <Button HorizontalAlignment="Right" Click="overwriteButton_Click" x:Name="overwriteButton" Content="Überschreiben"/>
         </DockPanel>
     </Grid>
 </Window>
