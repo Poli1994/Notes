@@ -36,16 +36,16 @@
         <TextBlock Grid.Row="1" Text="Notiztext:" Margin="10, 5, 0, 0"/>
         <TextBox Grid.Row="1" x:Name="newNoticeText" TextWrapping="Wrap" Margin="10, 20, 10, 10"/>
 
-        <StackPanel Grid.Row="0" Margin="10" Grid.Column="1" Grid.RowSpan="2" >
-            <TextBlock Text="Notizen:"/>
-            <ListBox SelectionChanged="Notices_SelectionChanged" x:Name="Notices" Visibility="Hidden">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Text}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+        
+        <TextBlock VerticalAlignment="Top" Margin="10, 10, 0, 0" Grid.Column="1" Text="Notizen:"/>
+        <ListBox Margin="10, 30, 10, 10" Grid.Column="1" Grid.RowSpan="2" SelectionChanged="Notices_SelectionChanged" x:Name="Notices" Visibility="Hidden">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
 
         <DockPanel Grid.Row="2">
             <Button Foreground="White" Click="deleteButton_Click" x:Name="deleteButton" Background="DarkRed" Content="Löschen"/>
